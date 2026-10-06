@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <title>Azora | Digital Menu & WhatsApp Ordering, Lekki Lagos</title>
+    <meta
+      name="description"
+      content="Azora digital menu: Authentic rice, soups, spaghetti, bulk orders, fresh juices & smoothies in Lekki, Lagos. Fast WhatsApp ordering."
+    />
+    <style>
+      :root {
+        --bg: #0d0d10;
+        --card: #16161a;
+        --line: #26262b;
+        --gold: #c5a059; /* Azora brand gold */
+        --gold-glow: rgba(197, 160, 89, 0.18);
+        --text: #f5f3ef;
+        --mute: #a39e93;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        padding-bottom: 90px;
+        min-height: 100vh;
+      }
+
+      /* Header Section */
+      header {
+        padding: 24px 16px 20px;
+        text-align: center;
+        border-bottom: 1px solid var(--line);
+        background: radial-gradient(ellipse at top, #1a160e, #0d0d10 80%);
+      }
+
+      .brand-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-bottom: 8px;
+      }
+
+      .logo-box {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 1px solid rgba(197, 160, 89, 0.4);
+        background: #0d0d10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        box-shadow: 0 0 14px rgba(197, 160, 89, 0.2);
+      }
+
+      .logo-box svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        text-align: left;
+        color: var(--text);
+      }
+      .tagline {
+        font-size: 10px;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-align: left;
+      }
+      .subtext {
+        font-size: 13px;
+        color: var(--mute);
+        max-width: 380px;
+        margin: 8px auto 0;
+        line-height: 1.4;
+      }
+      .meta-info {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        font-size: 12px;
+        color: var(--mute);
+        margin-top: 12px;
+      }
+
+      /* Navigation Bar */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 12px 16px;
+        background: rgba(13, 13, 16, 0.95);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+        scrollbar-width: none;
+      }
+      nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab-btn {
+        white-space: nowrap;
+        padding: 8px 16px;
+        border-radius: 99px;
+        border: 1px solid var(--line);
+        color: var(--mute);
+        font-size: 13px;
+        font-weight: 600;
+        background: var(--card);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .tab-btn.active {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: #0d0d10;
+      }
+
+      /* Main Container */
+      main {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 24px 16px;
+      }
+      .menu-section {
+        margin-bottom: 32px;
+      }
+      .category-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--gold);
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 8px;
+        margin-bottom: 14px;
+        letter-spacing: 0.5px;
+      }
+
+      /* Item Cards */
+      .item-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .item-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .item-desc {
+        font-size: 12px;
+        color: var(--mute);
+        margin: 4px 0 8px;
+        line-height: 1.3;
+      }
+      .item-price {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--gold);
+      }
+
+      /* Size Selector dropdown for Bulk Menu */
+      .size-select {
+        background: #111115;
+        color: var(--text);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 6px 10px;
+        font-size: 12px;
+        margin-top: 6px;
+        outline: none;
+      }
+      .size-select:focus {
+        border-color: var(--gold);
+      }
+
+      /* Stepper Buttons */
+      .stepper {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: #111115;
+        border: 1px solid var(--line);
+        padding: 4px;
+        border-radius: 99px;
+      }
+      .qty-btn {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: none;
+        background: var(--line);
+        color: var(--text);
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+      .qty-btn:active {
+        background: var(--gold);
+        color: #0d0d10;
+      }
+      .qty-count {
+        width: 20px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      /* Bottom Cart Bar */
+      .bottom-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 40;
+        padding: 12px 16px;
+        border-top: 1px solid var(--line);
+        background: rgba(13, 13, 16, 0.95);
+        backdrop-filter: blur(8px);
+      }
+      .bottom-content {
+        max-width: 680px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .total-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        color: var(--mute);
+        font-weight: 600;
+      }
+      .total-price {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .checkout-btn {
+        flex: 1;
+        max-width: 240px;
+        padding: 12px;
+        border-radius: 99px;
+        border: none;
+        background: var(--gold);
+        color: #0d0d10;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+      }
+      .checkout-btn:hover {
+        opacity: 0.9;
+      }
+
+      /* Modal Sheet */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: flex-end;
+      }
+      .modal-sheet {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        background: var(--bg);
+        border-top: 1px solid var(--line);
+        border-radius: 20px 20px 0 0;
+        padding: 20px;
+        max-height: 85vh;
+        overflow-y: auto;
+      }
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+      .close-btn {
+        background: none;
+        border: none;
+        color: var(--mute);
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .input-field {
+        width: 100%;
+        background: #111115;
+        border: 1px solid var(--line);
+        color: var(--text);
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
+      .radio-group {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .radio-option {
+        flex: 1;
+        padding: 10px;
+        background: #111115;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 13px;
+        text-align: center;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand-container">
+        <div class="logo-box">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="98" fill="#0d0d10" />
+            <circle
+              cx="100"
+              cy="100"
+              r="74"
+              fill="none"
+              stroke="#c5a059"
+              stroke-width="2"
+            />
+            <text
+              x="100"
+              y="105"
+              text-anchor="middle"
+              fill="#ffffff"
+              font-family="Georgia, serif"
+              font-size="34"
+              font-weight="bold"
+              letter-spacing="1"
+            >
+              azora.
+            </text>
+            <path id="curve" fill="none" d="M 40,110 A 62,62 0 0,0 160,110" />
+            <text
+              font-size="9"
+              fill="#c5a059"
+              font-family="-apple-system, sans-serif"
+              font-weight="bold"
+              letter-spacing="2"
+            >
+              <textPath href="#curve" startOffset="50%" text-anchor="middle">
+                TASTE THE LIFESTYLE.
+              </textPath>
+            </text>
+          </svg>
+        </div>
+        <div>
+          <h1>AZORA</h1>
+          <p class="tagline">TASTE THE LIFESTYLE</p>
+        </div>
+      </div>
+      <p class="subtext">
+        Authentic Nigerian cuisine, fresh juices, swallows, and bulk catering
+        orders in Lekki.
+      </p>
+      <div class="meta-info">
+        <span>📍 Lekki Phase 1, Lagos</span>
+        <span>🕒 Open Daily</span>
+      </div>
+    </header>
+
+    <nav id="tabs"></nav>
+
+    <main id="menu"></main>
+
+    <div class="bottom-bar">
+      <div class="bottom-content">
+        <div>
+          <div class="total-label">Total Order</div>
+          <div id="waTotal" class="total-price">₦0</div>
+        </div>
+        <button id="openCheckoutBtn" class="checkout-btn">
+          Checkout Order
+        </button>
+      </div>
+    </div>
+
+    <div id="modal" class="modal-overlay hidden">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h2 style="font-size: 18px; font-weight: 700">Your Selection</h2>
+          <button class="close-btn" id="closeModal">&times;</button>
+        </div>
+
+        <div
+          id="lines"
+          style="
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 12px;
+          "
+        ></div>
+
+        <form id="orderForm">
+          <input id="fn" class="input-field" placeholder="Full Name" required />
+          <input
+            id="ph"
+            type="tel"
+            class="input-field"
+            placeholder="Phone Number"
+            required
+          />
+
+          <div class="radio-group">
+            <label class="radio-option"
+              ><input type="radio" name="fm" value="Delivery" checked />
+              Delivery</label
+            >
+            <label class="radio-option"
+              ><input type="radio" name="fm" value="Pickup" /> Pickup</label
+            >
+          </div>
+
+          <textarea
+            id="ad"
+            rows="2"
+            class="input-field"
+            placeholder="Delivery Address"
+          ></textarea>
+          <textarea
+            id="nt"
+            rows="2"
+            class="input-field"
+            placeholder="Special Notes / Options"
+          ></textarea>
+
+          <button
+            type="submit"
+            class="checkout-btn"
+            style="width: 100%; max-width: none; margin-top: 8px"
+          >
+            Send Order to WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const MENU_DATA = [
+        {
+          category: "Rice Dishes",
+          items: [
+            {
+              id: "r1",
+              name: "Jollof Rice (Chicken, Turkey, Titus)",
+              desc: "Served with choice of Chicken, Turkey, or Titus fish",
+              price: 15000,
+            },
+            {
+              id: "r2",
+              name: "Jollof Rice (Goat meat, Beef)",
+              desc: "Served with choice of Goat meat or Beef",
+              price: 15000,
+            },
+            {
+              id: "r3",
+              name: "Rice and Stew (Chicken, Turkey, Titus)",
+              desc: "White rice served with stew & protein",
+              price: 15000,
+            },
+            {
+              id: "r4",
+              name: "Native Jollof Rice (Goat meat, Beef)",
+              desc: "Traditional native jollof rice",
+              price: 16000,
+            },
+            {
+              id: "r5",
+              name: "Native Jollof Rice (Chicken, Turkey, Titus)",
+              desc: "Traditional native jollof with choice of protein",
+              price: 16000,
+            },
+            {
+              id: "r6",
+              name: "Rice and Vegetable Sauce",
+              desc: "Served with Chicken, Turkey, or Titus",
+              price: 15000,
+            },
+            {
+              id: "r7",
+              name: "Coconut Rice",
+              desc: "Served with Chicken, Turkey, or Titus",
+              price: 16000,
+            },
+            {
+              id: "r8",
+              name: "Fried Rice",
+              desc: "Served with Chicken, Turkey, or Titus",
+              price: 16000,
+            },
+            {
+              id: "r9",
+              name: "Ofada Rice & Sauce",
+              desc: "Classic Ofada rice served with signature sauce",
+              price: 16000,
+            },
+          ],
+        },
+        {
+          category: "Spaghetti",
+          items: [
+            {
+              id: "sp1",
+              name: "Native Spaghetti & Titus Fish",
+              desc: "Spiced native style spaghetti",
+              price: 14000,
+            },
+            {
+              id: "sp2",
+              name: "Native Spaghetti & Chicken",
+              desc: "Spiced native style spaghetti",
+              price: 14000,
+            },
+            {
+              id: "sp3",
+              name: "Native Spaghetti & Turkey",
+              desc: "Spiced native style spaghetti",
+              price: 14000,
+            },
+            {
+              id: "sp4",
+              name: "Stir Fried Spaghetti",
+              desc: "Served with Chicken, Turkey, or Titus",
+              price: 16000,
+            },
+          ],
+        },
+        {
+          category: "Soups",
+          items: [
+            {
+              id: "so1",
+              name: "Okra Soup (Goat meat, Beef, Titus)",
+              desc: "Rich okra soup with protein choice",
+              price: 15000,
+            },
+            {
+              id: "so2",
+              name: "Okra Soup (Chicken, Turkey, Snail, Titus)",
+              desc: "Rich okra soup with protein choice",
+              price: 16000,
+            },
+            {
+              id: "so3",
+              name: "Sea Food Okra Soup",
+              desc: "Loaded with Calamari, Prawn, Snail & Fish",
+              price: 25000,
+            },
+          ],
+        },
+        {
+          category: "Proteins & Sides",
+          items: [
+            { id: "p1", name: "Snail", desc: "Single portion", price: 5000 },
+            { id: "p2", name: "Chicken", desc: "Single portion", price: 6000 },
+            {
+              id: "p3",
+              name: "Titus Fish",
+              desc: "Single portion",
+              price: 7000,
+            },
+            { id: "p4", name: "Turkey", desc: "Single portion", price: 7000 },
+            {
+              id: "p5",
+              name: "Beef (4pcs)",
+              desc: "4 tender beef pieces",
+              price: 10000,
+            },
+            {
+              id: "p6",
+              name: "Goat Meat (4pcs)",
+              desc: "4 goat meat pieces",
+              price: 10000,
+            },
+            {
+              id: "p7",
+              name: "Hake Fish",
+              desc: "Single portion",
+              price: 6000,
+            },
+            {
+              id: "sd1",
+              name: "Boiled Egg",
+              desc: "Extra boiled egg",
+              price: 1000,
+            },
+            {
+              id: "sd2",
+              name: "Coleslaw",
+              desc: "Fresh coleslaw side",
+              price: 2000,
+            },
+            {
+              id: "sd3",
+              name: "Azora Chicken Salad",
+              desc: "House special salad",
+              price: 14000,
+            },
+            {
+              id: "sd4",
+              name: "Fried Plantain",
+              desc: "Golden fried plantain portion",
+              price: 2000,
+            },
+          ],
+        },
+        {
+          category: "Other Dishes & Swallow",
+          items: [
+            {
+              id: "od1",
+              name: "Plantain and Egg Sauce",
+              desc: "Fried plantain served with egg sauce",
+              price: 10000,
+            },
+            {
+              id: "od2",
+              name: "Yam and Egg Sauce",
+              desc: "Boiled/fried yam served with egg sauce",
+              price: 10000,
+            },
+            {
+              id: "od3",
+              name: "Assorted Goat Meat Pepper Soup",
+              desc: "Comes with Rice or Yam",
+              price: 16000,
+            },
+            {
+              id: "sw1",
+              name: "Extra Semo",
+              desc: "Swallow portion",
+              price: 1000,
+            },
+            {
+              id: "sw2",
+              name: "Extra Garri",
+              desc: "Swallow portion",
+              price: 1000,
+            },
+            { id: "sw3", name: "Poundo", desc: "Swallow portion", price: 2000 },
+            {
+              id: "sw4",
+              name: "Oat / Plantain Flour",
+              desc: "Swallow portion",
+              price: 2000,
+            },
+            { id: "sw5", name: "Fufu", desc: "Swallow portion", price: 1000 },
+          ],
+        },
+        {
+          category: "Juices & Drinks",
+          items: [
+            {
+              id: "j1",
+              name: "Apple Juice",
+              desc: "Fresh cold-pressed juice",
+              price: 8500,
+            },
+            {
+              id: "j2",
+              name: "Pineapple Juice",
+              desc: "Fresh cold-pressed juice",
+              price: 6000,
+            },
+            {
+              id: "j3",
+              name: "Watermelon Juice",
+              desc: "Fresh cold-pressed juice",
+              price: 5500,
+            },
+            {
+              id: "j4",
+              name: "Ruby Glow Juice",
+              desc: "Fresh specialty blend",
+              price: 6000,
+            },
+            {
+              id: "j5",
+              name: "Golden Glow Smoothie",
+              desc: "Fresh smoothie blend",
+              price: 5500,
+            },
+            {
+              id: "j6",
+              name: "The Lifestyle Pack (Juice)",
+              desc: "Specialty juice bundle",
+              price: 28000,
+            },
+            {
+              id: "j7",
+              name: "Green Revive Juice",
+              desc: "Fresh detox blend",
+              price: 6000,
+            },
+            {
+              id: "j8",
+              name: "Tiger Nut Drink",
+              desc: "Fresh tiger nut blend",
+              price: 7500,
+            },
+            { id: "j9", name: "Water", desc: "Bottled water", price: 1000 },
+          ],
+        },
+        {
+          category: "Bulk Orders (Rice & Pasta)",
+          items: [
+            {
+              id: "b_r1",
+              name: "Smoky Jollofrice (Bulk)",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 60000, "3 Ltrs": 80000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_r2",
+              name: "Friedrice (Bulk)",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 80000, "3 Ltrs": 90000, "5 Ltrs": 105000 },
+            },
+            {
+              id: "b_r3",
+              name: "Azora Signature Coconut Rice (Bulk)",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 80000, "3 Ltrs": 100000, "5 Ltrs": 120000 },
+            },
+            {
+              id: "b_r4",
+              name: "Native Jollofrice (Bulk)",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 80000, "3 Ltrs": 100000, "5 Ltrs": 120000 },
+            },
+            {
+              id: "b_r5",
+              name: "Stir Fry Native Spaghetti (Bulk)",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 60000, "3 Ltrs": 70000, "5 Ltrs": 90000 },
+            },
+            {
+              id: "b_r6",
+              name: "Stir Fry Spaghetti (Bulk)",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 60000, "3 Ltrs": 70000, "5 Ltrs": 90000 },
+            },
+            {
+              id: "b_r7",
+              name: "Beans Porridge (Bulk)",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 56000, "3 Ltrs": 66000, "5 Ltrs": 76000 },
+            },
+            {
+              id: "b_r8",
+              name: "Plantain Porridge (Bulk)",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 60000, "3 Ltrs": 70000, "5 Ltrs": 90000 },
+            },
+            {
+              id: "b_r9",
+              name: "White Rice and Beans Mixed (Bulk)",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 30000, "3 Ltrs": 40000, "5 Ltrs": 60000 },
+            },
+          ],
+        },
+        {
+          category: "Bulk Orders (Soup & Stew)",
+          items: [
+            {
+              id: "b_s1",
+              name: "Afang Soup with Goat",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 85000, "5 Ltrs": 110000 },
+            },
+            {
+              id: "b_s2",
+              name: "Afang Soup with Titus Fish",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 85000, "3 Ltrs": 95000, "5 Ltrs": 120000 },
+            },
+            {
+              id: "b_s3",
+              name: "Vegetable Soup (Edikaikong with Goat)",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 60000, "3 Ltrs": 80000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s4",
+              name: "Egusi with Chicken",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 65000, "3 Ltrs": 80000, "5 Ltrs": 105000 },
+            },
+            {
+              id: "b_s5",
+              name: "Egusi with Goat Meat",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 60000, "3 Ltrs": 85000, "5 Ltrs": 110000 },
+            },
+            {
+              id: "b_s6",
+              name: "Egusi with Titus Fish",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 85000, "3 Ltrs": 95000, "5 Ltrs": 120000 },
+            },
+            {
+              id: "b_s7",
+              name: "Ogbono with Goat Meat",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 85000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s8",
+              name: "Ogbono with Titus Fish",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 85000, "3 Ltrs": 95000, "5 Ltrs": 120000 },
+            },
+            {
+              id: "b_s9",
+              name: "Okra Soup with Titus Fish",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 85000, "3 Ltrs": 95000, "5 Ltrs": 120000 },
+            },
+            {
+              id: "b_s10",
+              name: "Okra with Snail",
+              isBulk: true,
+              prices: {
+                "2.5 Ltrs": 100000,
+                "3 Ltrs": 150000,
+                "5 Ltrs": 250000,
+              },
+            },
+            {
+              id: "b_s11",
+              name: "Okra with Goat Meat",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 85000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s12",
+              name: "Oha with Goat Meat",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 85000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s13",
+              name: "Oha with Beef and Assorted",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 85000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s14",
+              name: "Oha with Cowleg",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 90000, "5 Ltrs": 120000 },
+            },
+            {
+              id: "b_s15",
+              name: "Bitter Leaf Soup with Goat Meat",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 85000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s16",
+              name: "Bitter Leaf Soup with Cowleg",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 90000, "5 Ltrs": 120000 },
+            },
+            {
+              id: "b_s17",
+              name: "Bitter Leaf Soup with Beef and Assorted",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 80000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s18",
+              name: "Turkey Stew",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 85000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s19",
+              name: "Chicken Stew",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 60000, "3 Ltrs": 75000, "5 Ltrs": 85000 },
+            },
+            {
+              id: "b_s20",
+              name: "Goat Meat Stew",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 85000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s21",
+              name: "Titus Fish Stew",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 65000, "3 Ltrs": 80000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s22",
+              name: "Beef and Assorted Stew",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 70000, "3 Ltrs": 80000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s23",
+              name: "Sea Food Okra",
+              isBulk: true,
+              prices: {
+                "2.5 Ltrs": 150000,
+                "3 Ltrs": 200000,
+                "5 Ltrs": 280000,
+              },
+            },
+            {
+              id: "b_s24",
+              name: "Ofe Akwu with Goat Meat & Assorted",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 80000, "3 Ltrs": 95000, "5 Ltrs": 100000 },
+            },
+            {
+              id: "b_s25",
+              name: "Assorted Goat Meat Pepper Soup (Bulk)",
+              isBulk: true,
+              prices: { "2.5 Ltrs": 65000, "3 Ltrs": 80000, "5 Ltrs": 100000 },
+            },
+          ],
+        },
+      ];
+
+      let cart = {};
+      let activeCategory = "ALL";
+
+      function formatNaira(amt) {
+        return "₦" + amt.toLocaleString("en-NG");
+      }
+
+      function initNavigation() {
+        const nav = document.getElementById("tabs");
+        nav.innerHTML = "";
+
+        const allBtn = document.createElement("button");
+        allBtn.className = `tab-btn ${activeCategory === "ALL" ? "active" : ""}`;
+        allBtn.textContent = "All Items";
+        allBtn.onclick = () => selectCategory("ALL");
+        nav.appendChild(allBtn);
+
+        MENU_DATA.forEach((cat) => {
+          const btn = document.createElement("button");
+          btn.className = `tab-btn ${activeCategory === cat.category ? "active" : ""}`;
+          btn.textContent = cat.category;
+          btn.onclick = () => selectCategory(cat.category);
+          nav.appendChild(btn);
+        });
+      }
+
+      function selectCategory(categoryName) {
+        activeCategory = categoryName;
+        initNavigation();
+        renderMenu();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function renderMenu() {
+        const main = document.getElementById("menu");
+        main.innerHTML = "";
+
+        const categoriesToDisplay =
+          activeCategory === "ALL"
+            ? MENU_DATA
+            : MENU_DATA.filter((c) => c.category === activeCategory);
+
+        categoriesToDisplay.forEach((cat) => {
+          const sec = document.createElement("section");
+          sec.className = "menu-section";
+          sec.innerHTML = `<h2 class="category-title">${cat.category}</h2>`;
+
+          cat.items.forEach((item) => {
+            const card = document.createElement("div");
+            card.className = "item-card";
+
+            const currentQty = cart[item.id] ? cart[item.id].qty : 0;
+
+            if (item.isBulk) {
+              const selectedSize = cart[item.id]
+                ? cart[item.id].selectedSize
+                : "2.5 Ltrs";
+              let sizeOptions = Object.keys(item.prices)
+                .map(
+                  (size) =>
+                    `<option value="${size}" ${size === selectedSize ? "selected" : ""}>${size} - ${formatNaira(item.prices[size])}</option>`,
+                )
+                .join("");
+
+              const currentPrice = item.prices[selectedSize];
+
+              card.innerHTML = `
+          <div style="flex:1;">
+            <div class="item-title">${item.name}</div>
+            <select id="size-${item.id}" class="size-select" onchange="updateBulkItemPrice('${item.id}')">
+              ${sizeOptions}
+            </select>
+            <div id="price-display-${item.id}" class="item-price" style="margin-top:6px;">${formatNaira(currentPrice)}</div>
+          </div>
+          <div class="stepper">
+            <button class="qty-btn" onclick="updateQty('${item.id}', -1, true)">-</button>
+            <span id="qty-${item.id}" class="qty-count">${currentQty}</span>
+            <button class="qty-btn" onclick="updateQty('${item.id}', 1, true)">+</button>
+          </div>
+        `;
+            } else {
+              card.innerHTML = `
+          <div style="flex:1;">
+            <div class="item-title">${item.name}</div>
+            <div class="item-desc">${item.desc}</div>
+            <div class="item-price">${formatNaira(item.price)}</div>
+          </div>
+          <div class="stepper">
+            <button class="qty-btn" onclick="updateQty('${item.id}', -1)">-</button>
+            <span id="qty-${item.id}" class="qty-count">${currentQty}</span>
+            <button class="qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+          </div>
+        `;
+            }
+
+            sec.appendChild(card);
+          });
+
+          main.appendChild(sec);
+        });
+      }
+
+      function updateBulkItemPrice(id) {
+        let foundItem = null;
+        MENU_DATA.forEach((c) =>
+          c.items.forEach((i) => {
+            if (i.id === id) foundItem = i;
+          }),
+        );
+
+        const selectedSize = document.getElementById(`size-${id}`).value;
+        const priceDisplay = document.getElementById(`price-display-${id}`);
+        priceDisplay.textContent = formatNaira(foundItem.prices[selectedSize]);
+
+        if (cart[id]) {
+          cart[id].selectedSize = selectedSize;
+          cart[id].price = foundItem.prices[selectedSize];
+          updateTotal();
+        }
+      }
+
+      function updateQty(id, delta, isBulk = false) {
+        let foundItem = null;
+        MENU_DATA.forEach((c) =>
+          c.items.forEach((i) => {
+            if (i.id === id) foundItem = i;
+          }),
+        );
+
+        let key = id;
+        if (!cart[key]) {
+          if (isBulk) {
+            const selectedSize = document.getElementById(`size-${id}`).value;
+            cart[key] = {
+              ...foundItem,
+              selectedSize,
+              price: foundItem.prices[selectedSize],
+              qty: 0,
+            };
+          } else {
+            cart[key] = { ...foundItem, qty: 0 };
+          }
+        }
+
+        cart[key].qty += delta;
+
+        if (cart[key].qty <= 0) delete cart[key];
+
+        const countEl = document.getElementById(`qty-${id}`);
+        if (countEl) countEl.textContent = cart[key] ? cart[key].qty : 0;
+
+        updateTotal();
+      }
+
+      function updateTotal() {
+        let total = 0;
+        Object.values(cart).forEach((item) => {
+          total += item.price * item.qty;
+        });
+        document.getElementById("waTotal").textContent = formatNaira(total);
+      }
+
+      const modal = document.getElementById("modal");
+      document.getElementById("openCheckoutBtn").onclick = () => {
+        if (Object.keys(cart).length === 0)
+          return alert("Please add items to order.");
+
+        const lines = document.getElementById("lines");
+        lines.innerHTML = "";
+        Object.values(cart).forEach((i) => {
+          let title = i.name;
+          if (i.isBulk) title += ` (${i.selectedSize})`;
+          lines.innerHTML += `<div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;">
+      <span>${title} (${i.qty}x)</span>
+      <strong>${formatNaira(i.price * i.qty)}</strong>
+    </div>`;
+        });
+
+        modal.classList.remove("hidden");
+      };
+
+      document.getElementById("closeModal").onclick = () =>
+        modal.classList.add("hidden");
+
+      document.getElementById("orderForm").onsubmit = (e) => {
+        e.preventDefault();
+        const name = document.getElementById("fn").value;
+        const phone = document.getElementById("ph").value;
+        const address = document.getElementById("ad").value;
+        const note = document.getElementById("nt").value;
+
+        let text = `*NEW ORDER - AZORA*\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nNotes: ${note}\n\n*ITEMS:*\n`;
+        let grand = 0;
+        Object.values(cart).forEach((i) => {
+          let title = i.name;
+          if (i.isBulk) title += ` (${i.selectedSize})`;
+          text += `• ${title} (${i.qty}x) - ${formatNaira(i.price * i.qty)}\n`;
+          grand += i.price * i.qty;
+        });
+        text += `\n*TOTAL:* ${formatNaira(grand)}`;
+
+        // Updated to Azora's exact WhatsApp phone number
+        window.open(
+          `https://wa.me/2348129444562?text=${encodeURIComponent(text)}`,
+          "_blank",
+        );
+      };
+
+      // Initial load
+      initNavigation();
+      renderMenu();
+    </script>
+  </body>
+</html>
